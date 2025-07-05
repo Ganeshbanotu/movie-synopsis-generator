@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block title %}Generate Synopsis{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Generate a Movie Synopsis</h2>
+<form method="POST" action="/generate" class="space-y-4">
+  <input type="text" name="title" placeholder="Movie Title" required class="w-full p-2 border rounded">
+  <input type="text" name="genre" placeholder="Genre (e.g. Sci-fi, Romance)" required class="w-full p-2 border rounded">
+
+  <div class="grid grid-cols-3 gap-4">
+    <select name="style" class="w-full p-2 border rounded">
+      <option value="netflix">Netflix Style</option>
+      <option value="classic">Classic Plot</option>
+      <option value="logline">Logline</option>
+    </select>
+    <select name="tone" class="w-full p-2 border rounded">
+      <option value="suspenseful">Suspenseful</option>
+      <option value="comedic">Comedic</option>
+      <option value="romantic">Romantic</option>
+    </select>
+    <select name="length" class="w-full p-2 border rounded">
+      <option value="short">Short</option>
+      <option value="medium">Medium</option>
+      <option value="long">Long</option>
+    </select>
+  </div>
+
+  <select name="language" class="w-full p-2 border rounded">
+    <option value="English">English</option>
+    <option value="Hindi">Hindi</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+  </select>
+
+  <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Generate</button>
+</form>
+
+{% if generated %}
+<div class="mt-8 p-4 border rounded bg-white">
+  <h3 class="text-xl font-semibold mb-2">Generated Synopsis:</h3>
+  <p class="whitespace-pre-wrap">{{ generated }}</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block title %}Your History{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Your Generated Synopses</h2>
+{% if synopses %}
+  <ul class="space-y-4">
+    {% for s in synopses %}
+      <li class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">{{ s.title }} ({{ s.genre }}, {{ s.language }})</h3>
+        <p class="text-sm text-gray-600">Style: {{ s.style }}, Tone: {{ s.tone }}, Length: {{ s.length }} | {{ s.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p class="mt-2 whitespace-pre-wrap">{{ s.content }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No synopses found.</p>
+{% endif %}
+{% endblock %}
